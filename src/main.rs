@@ -8,7 +8,6 @@ use crate::config::Config;
 static CONFIG: Lazy<Config> = Lazy::new(Config::new);
 
 async fn fetch_file_content(file_path: String) -> Result<Vec<u8>, ReqwestError> {
-    println!("CONFIG.hdfs_uri {}",CONFIG.hdfs_uri);
     let url = format!("{}/{}?op=OPEN", CONFIG.hdfs_uri,file_path );
     let client = reqwest::Client::new();
     let res = client.get(&url).send().await?;
@@ -44,7 +43,7 @@ async fn handle_request(file_path: String) -> Result<impl Reply, Rejection> {
 
 #[tokio::main]
 async fn main() {
-    let calculate_route = warp::path!("calculate" / String)
+    let calculate_route = warp::path!(String)
         .and(warp::get())
         .and_then(handle_request);
    println!("Listening on port {}", CONFIG.port);

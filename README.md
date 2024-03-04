@@ -17,8 +17,21 @@ cargo build --release
 
 ## Usage
 
-### Env Variables
+### Run 
 
 ```
 DV_PORT="<PORT>" HDFS_URI="<HDFS URI>"  target/release/deitos-verifier
+```
+
+### Query 
+
+
+```
+curl "<VERIFIER_URL>/<FILE_NAME>"
+```
+
+**Example**:
+
+```
+curl "http://localhost:4040/test.csv"
 ```
