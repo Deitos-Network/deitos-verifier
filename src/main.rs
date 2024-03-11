@@ -48,6 +48,6 @@ async fn main() {
         .and_then(handle_request);
    println!("Listening on port {}", CONFIG.port);
     warp::serve(calculate_route)
-        .run(([127, 0, 0, 1], CONFIG.port))
+        .run(([0, 0, 0, 0], CONFIG.port))
         .await;
 }
